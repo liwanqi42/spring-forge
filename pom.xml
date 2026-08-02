@@ -175,17 +175,23 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <keyname>7C18020D23EE7A27</keyname>
-                </configuration>
+                <version>3.2.7</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
                         <phase>verify</phase>
-                        <goals><goal>sign</goal></goals>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <keyname>7C18020D23EE7A27</keyname>
+                    <gpgArguments>
+                        <arg>--pinentry-mode</arg>
+                        <arg>loopback</arg>
+                    </gpgArguments>
+                </configuration>
             </plugin>
             <!-- Central Portal 发布插件（新版推荐） -->
             <plugin>

@@ -1,33 +1,68 @@
-name: Deploy to Maven Central
+name: Publish to Maven Central
+
 on:
   push:
     tags:
-      - 'v*.*.*'
-  workflow_dispatch:
+      - 'v*'              # 推送 v1.0, v1.0.0 等 tag 时自动发布
+  workflow_dispatch:       # 支持手动触发
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # 修复 No such file or directory：显式安装gpg
-      - name: Install gnupg
-        run: sudo apt update && sudo apt install -y gnupg
-
-      - name: Set up JDK
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: 17
-          distribution: temurin
-          server-id: central
-          server-username: ${{ secrets.SONATYPE_USER }}
-          server-password: ${{ secrets.SONATYPE_TOKEN }}
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
 
-      # 删掉你原来手动配置gpg-agent那一段！
-      - name: Build & Deploy
+      - name: Import GPG key
         env:
-          GPG_TTY: $(tty)
-        run: mvn clean deploy -DskipTests
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: |
+          # 写入临时文件再导入（避免 echo 管道导致的格式问题）
+          echo "$GPG_PRIVATE_KEY" > /tmp/private-key.asc
+          gpg --batch --pinentry-mode loopback --import /tmp/private-key.asc || true
+          rm -f /tmp/private-key.asc
+
+          # 提取完整指纹
+          KEY_ID=$(gpg --list-secret-keys --with-colons 2>/dev/null \
+            | grep '^sec:' | tail -1 | cut -d: -f5)
+          echo "GPG_KEY_ID=$KEY_ID" >> $GITHUB_ENV
+          echo "GPG key imported: $KEY_ID"
+
+          # 设置信任级别
+          echo "$KEY_ID:6:" | gpg --import-ownertrust || true
+
+      - name: Set up Maven settings
+        env:
+          CENTRAL_USER: ${{ secrets.CENTRAL_USER }}
+          CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml << EOF
+          <settings>
+            <servers>
+              <server>
+                <id>central</id>
+                <username>${CENTRAL_USER}</username>
+                <password>${CENTRAL_TOKEN}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Publish to Maven Central
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          mvn deploy \
+            -Dgpg.keyname=$GPG_KEY_ID \
+            -Dgpg.passphrase=$GPG_PASSPHRASE \
+            --batch-mode \
+            --no-transfer-progress
