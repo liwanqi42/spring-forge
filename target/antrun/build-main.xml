@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="maven-antrun-" default="main">
+  <target name="main">
+    <property name="readmeVer" value="2.0.1" />
+    <replaceregexp file="D:\des\spring-forge/README.md" match="&lt;version>[\d.]+&lt;/version>" replace="&lt;version>@{readmeVer}&lt;/version>" byline="true" />
+  </target>
+</project>

@@ -107,6 +107,7 @@ public class GlobalClassGenerator {
                         ? ".domain.repository" : ".mapper"));
         // MyBatisPlusConfig 模式：minimal=仅分页插件, full=手动 DataSource/SqlSessionFactory
         model.put("myBatisConfigMode", ctx.getOptions().isMinimalMyBatisConfig() ? "minimal" : "full");
+        model.put("useLombok", ctx.getOptions().isUseLombok());
         return model;
     }
 
