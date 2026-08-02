@@ -16,25 +16,25 @@
     <url>https://github.com/liwanqi42/spring-forge</url>
 
     <!-- 许可证、开发者、SCM 信息（central 强制要求） -->
-<!--    <licenses>-->
-<!--        <license>-->
-<!--            <name>Apache-2.0</name>-->
-<!--            <url>https://www.apache.org/licenses/LICENSE-2.0</url>-->
-<!--        </license>-->
-<!--    </licenses>-->
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
 
-<!--    <developers>-->
-<!--        <developer>-->
-<!--            <name>liwanqi42</name>-->
-<!--            <url>https://github.com/liwanqi42</url>-->
-<!--        </developer>-->
-<!--    </developers>-->
+    <developers>
+        <developer>
+            <name>liwanqi42</name>
+            <url>https://github.com/liwanqi42</url>
+        </developer>
+    </developers>
 
-<!--    <scm>-->
-<!--        <connection>scm:git:https://github.com/liwanqi42/spring-forge.git</connection>-->
-<!--        <developerConnection>scm:git:ssh:git@github.com:liwanqi42/spring-forge.git</developerConnection>-->
-<!--        <url>https://github.com/liwanqi42/spring-forge</url>-->
-<!--    </scm>-->
+    <scm>
+        <connection>scm:git:https://github.com/liwanqi42/spring-forge.git</connection>
+        <developerConnection>scm:git:ssh:git@github.com:liwanqi42/spring-forge.git</developerConnection>
+        <url>https://github.com/liwanqi42/spring-forge</url>
+    </scm>
 
     <properties>
         <java.version>17</java.version>
@@ -129,54 +129,54 @@
                 </configuration>
             </plugin>
             <!-- 源码包 -->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-source-plugin</artifactId>-->
-<!--                <version>3.3.1</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>attach-sources</id>-->
-<!--                        <goals><goal>jar-no-fork</goal></goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals><goal>jar-no-fork</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Javadoc -->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-javadoc-plugin</artifactId>-->
-<!--                <version>3.6.3</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>attach-javadocs</id>-->
-<!--                        <goals><goal>javadoc-no-fork</goal></goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals><goal>javadoc-no-fork</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- GPG 签名 -->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-gpg-plugin</artifactId>-->
-<!--                <version>3.2.0</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>sign-artifacts</id>-->
-<!--                        <phase>verify</phase>-->
-<!--                        <goals><goal>sign</goal></goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals><goal>sign</goal></goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Central Portal 发布插件（新版推荐） -->
-<!--            <plugin>-->
-<!--                <groupId>org.sonatype.central</groupId>-->
-<!--                <artifactId>central-publishing-maven-plugin</artifactId>-->
-<!--                <version>0.4.0</version>-->
-<!--                <extensions>true</extensions>-->
-<!--                <configuration>-->
-<!--                    <publishingServerId>central</publishingServerId>-->
-<!--                    <tokenAuth>true</tokenAuth>-->
-<!--                    <autoPublish>true</autoPublish>-->
-<!--                </configuration>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.4.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <tokenAuth>true</tokenAuth>
+                    <autoPublish>true</autoPublish>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
