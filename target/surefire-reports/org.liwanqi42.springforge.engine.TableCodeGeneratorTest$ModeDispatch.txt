@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: org.liwanqi42.springforge.engine.TableCodeGeneratorTest$ModeDispatch
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.129 s -- in org.liwanqi42.springforge.engine.TableCodeGeneratorTest$ModeDispatch

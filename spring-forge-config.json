@@ -1,0 +1,36 @@
+{
+  "project": {
+    "name": "my-project",
+    "groupId": "com.example",
+    "basePackage": "com.example.demo",
+    "mode": "MVC",
+    "outputDir": ".",
+    "author": "CodeGenerator",
+    "overwrite": false
+  },
+  "tables": [
+    {
+      "name": "user",
+      "comment": "用户表",
+      "columns": [
+        { "name": "id", "type": "BIGINT", "comment": "主键ID", "primaryKey": true, "autoIncrement": true },
+        { "name": "username", "type": "VARCHAR", "length": 50, "comment": "用户名", "nullable": false },
+        { "name": "password", "type": "VARCHAR", "length": 255, "comment": "密码", "nullable": false },
+        { "name": "email", "type": "VARCHAR", "length": 100, "comment": "邮箱", "nullable": true },
+        { "name": "phone", "type": "VARCHAR", "length": 20, "comment": "手机号", "nullable": true },
+        { "name": "status", "type": "TINYINT", "comment": "状态：1启用 0禁用", "defaultValue": "1" },
+        { "name": "create_time", "type": "DATETIME", "comment": "创建时间" },
+        { "name": "update_time", "type": "DATETIME", "comment": "更新时间" }
+      ]
+    }
+  ],
+  "options": {
+    "generateDdl": true,
+    "logicDeleteField": "deleted",
+    "optimisticLockField": "version",
+    "idType": "ASSIGN_ID",
+    "tablePrefix": "",
+    "useLombok": true,
+    "minimalMyBatisConfig": true
+  }
+}
