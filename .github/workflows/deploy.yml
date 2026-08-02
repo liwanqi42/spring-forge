@@ -17,12 +17,17 @@ jobs:
           java-version: 17
           distribution: temurin
           server-id: central
-          server-username: SONATYPE_USER
-          server-password: SONATYPE_TOKEN
+          server-username: ${{ secrets.SONATYPE_USER }}
+          server-password: ${{ secrets.SONATYPE_TOKEN }}
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: GPG_PASSPHRASE
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+
+      - name: Configure GPG agent
+        run: |
+          mkdir -p ~/.gnupg
+          echo "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
+          gpgconf --kill gpg-agent
+          gpg-connect-agent reloadagent /bye || true
 
       - name: Build & Deploy
-        env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: mvn clean deploy -DskipTests
