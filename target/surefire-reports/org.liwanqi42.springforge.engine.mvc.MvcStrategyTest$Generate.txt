@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.liwanqi42.springforge.engine.mvc.MvcStrategyTest$Generate
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.647 s -- in org.liwanqi42.springforge.engine.mvc.MvcStrategyTest$Generate

@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: org.liwanqi42.springforge.engine.ddd.DddStrategyTest$Generate
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.773 s -- in org.liwanqi42.springforge.engine.ddd.DddStrategyTest$Generate
