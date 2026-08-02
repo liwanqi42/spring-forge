@@ -1,0 +1,8 @@
+org.liwanqi42.springforge
+org.liwanqi42.springforge.engine
+org.liwanqi42.springforge.engine.ddd
+org.liwanqi42.springforge.engine.mvc
+org.liwanqi42.springforge.exception
+org.liwanqi42.springforge.metadata
+org.liwanqi42.springforge.model
+org.liwanqi42.springforge.util

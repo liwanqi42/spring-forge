@@ -22,7 +22,6 @@ import java.util.Map;
  *     <li>应用层（application）：DTO/VO、转换器、应用服务；协调领域能力，编排业务流程，不包含业务规则</li>
  *     <li>适配层（adapter.web）：Controller；接收外部 HTTP 请求，适配输入输出</li>
  * </ul>
- * </p>
  */
 public class DddStrategy extends AbstractStrategy {
 

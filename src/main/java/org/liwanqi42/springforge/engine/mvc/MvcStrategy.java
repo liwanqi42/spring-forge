@@ -24,8 +24,6 @@ import java.util.Map;
  *     <li>controller：HTTP 请求入口</li>
  *     <li>dto / vo / converter：入参、出参与对象转换工具</li>
  * </ul>
- * </p>
- * </p>
  */
 public class MvcStrategy extends AbstractStrategy {
 
