@@ -41,17 +41,17 @@ jobs:
 
       - name: Set up Maven settings
         env:
-          CENTRAL_USER: ${{ secrets.CENTRAL_USER }}
-          CENTRAL_TOKEN: ${{ secrets.CENTRAL_TOKEN }}
+          SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
+          SONATYPE_TOKEN: ${{ secrets.SONATYPE_TOKEN }}
         run: |
           mkdir -p ~/.m2
           cat > ~/.m2/settings.xml << EOF
           <settings>
             <servers>
               <server>
-                <id>central</id>
-                <username>${CENTRAL_USER}</username>
-                <password>${CENTRAL_TOKEN}</password>
+                <id>sonatype</id>
+                <username>${SONATYPE_USER}</username>
+                <password>${SONATYPE_TOKEN}</password>
               </server>
             </servers>
           </settings>
