@@ -1,15 +1,8 @@
 package ${basePackage}.common;
 
-<#if useLombok>
-    import lombok.Data;
-</#if>
-
 /**
  * 自定义业务异常。
  */
-<#if useLombok>
-    @Data
-</#if>
 public class BizException extends RuntimeException {
 
     private final int code;
@@ -29,7 +22,5 @@ public class BizException extends RuntimeException {
         this.code = errorCode.getCode();
     }
 
-<#if !useLombok>
     public int getCode() { return code; }
-</#if>
 }

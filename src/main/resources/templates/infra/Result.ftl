@@ -2,7 +2,7 @@ package ${basePackage}.common;
 
 import java.io.Serializable;
 <#if useLombok>
-    import lombok.Data;
+import lombok.Data;
 </#if>
 
 /**
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @param <T> 响应数据类型
  */
 <#if useLombok>
-    @Data
+@Data
 </#if>
 public class Result<T> implements Serializable {
 
@@ -55,14 +55,12 @@ public class Result<T> implements Serializable {
         return r;
     }
 
-<#if !useLombok>
     public int getCode() { return code; }
     public void setCode(int code) { this.code = code; }
     public String getMessage() { return message; }
     public void setMessage(String message) { this.message = message; }
     public T getData() { return data; }
     public void setData(T data) { this.data = data; }
-</#if>
 
     public boolean isSuccess() { return code == SUCCESS_CODE; }
 }

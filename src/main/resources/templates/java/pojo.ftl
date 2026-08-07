@@ -36,15 +36,18 @@
 <#elseif type == "query-dto">
 <@m.simplePojo packageName=dtoOutputPackage className="${entityName}QueryDTO"
               description="${tableComment!entityName}查询入参DTO"
-              columns=queryColumns />
+              columns=queryColumns
+              extraImports="import jakarta.validation.constraints.*;" />
 <#elseif type == "list-vo">
 <#assign voCols = columns?filter(col -> !col.systemField)>
 <@m.simplePojo packageName=voOutputPackage className="${entityName}ListVO"
               description="${tableComment!entityName}列表视图对象（已脱敏，不暴露系统字段）"
-              columns=voCols />
+              columns=voCols
+              extraImports="import jakarta.validation.constraints.*;" />
 <#elseif type == "detail-vo">
 <#assign voCols = columns?filter(col -> !col.systemField)>
 <@m.simplePojo packageName=voOutputPackage className="${entityName}DetailVO"
               description="${tableComment!entityName}详情视图对象（已脱敏，不暴露系统字段）"
-              columns=voCols />
+              columns=voCols
+              extraImports="import jakarta.validation.constraints.*;" />
 </#if>

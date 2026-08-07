@@ -1,7 +1,9 @@
 package ${basePackage}.common.config;
 
 <#if myBatisConfigMode == "full">
+import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -25,16 +27,18 @@ import org.springframework.context.annotation.Configuration;
 
 <#if myBatisConfigMode == "full">
 /**
- * MyBatis-Plus 手动配置（不依赖特定 Spring Boot 版本的类，确保跨版本兼容）。
- */
+ * MyBatis-Plus 手动配置。
+ *
+ * <p>显式声明 DataSource / SqlSessionFactory / SqlSessionTemplate，
+ * 不依赖 Spring Boot 自动配置，确保跨 Spring Boot 版本兼容。</p>
 <#else>
 /**
  * MyBatis-Plus 配置。
  *
  * <p>DataSource / SqlSessionFactory / SqlSessionTemplate 由
  * Spring Boot 自动配置管理，通过 application.yml 调整参数。</p>
- */
 </#if>
+ */
 @Configuration
 @MapperScan("${mapperScanPackage}")
 public class MyBatisPlusConfig {
@@ -70,12 +74,16 @@ public class MyBatisPlusConfig {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
 
+    /** 分页插件 */
     @Bean
+    @ConditionalOnMissingBean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        return new MybatisPlusInterceptor();
+        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
+        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.MYSQL));
+        return interceptor;
     }
 <#else>
-    /** 分页插件 + 自动识别数据库类型 */
+    /** 分页插件 */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 <#if useLombok>
-    import lombok.Data;
+import lombok.Data;
 </#if>
 
 /**
@@ -14,7 +14,7 @@ import java.util.List;
  * @param <T> 数据类型
  */
 <#if useLombok>
-    @Data
+@Data
 </#if>
 public class PageResult<T> implements Serializable {
 
@@ -48,7 +48,6 @@ public class PageResult<T> implements Serializable {
         return r;
     }
 
-<#if !useLombok>
     public long getTotal() { return total; }
     public void setTotal(long total) { this.total = total; }
     public long getPages() { return pages; }
@@ -59,5 +58,4 @@ public class PageResult<T> implements Serializable {
     public void setSize(long size) { this.size = size; }
     public List<T> getRecords() { return records; }
     public void setRecords(List<T> records) { this.records = records; }
-</#if>
 }

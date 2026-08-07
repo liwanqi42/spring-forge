@@ -105,10 +105,25 @@ public class GlobalClassGenerator {
         model.put("mapperScanPackage", ctx.getBasePackage()
                 + (ctx.getMode() == org.liwanqi42.springforge.model.GenerationMode.DDD
                         ? ".domain.repository" : ".mapper"));
-        // MyBatisPlusConfig 模式：minimal=仅分页插件, full=手动 DataSource/SqlSessionFactory
-        model.put("myBatisConfigMode", ctx.getOptions().isMinimalMyBatisConfig() ? "minimal" : "full");
+        // Spring Boot 4.x+ 自动配置可能不兼容 → 强制使用 full 模式（显式声明 Bean）
+        boolean useFull = !ctx.getOptions().isMinimalMyBatisConfig() || getBootMajorVersion() >= 4;
+        model.put("myBatisConfigMode", useFull ? "full" : "minimal");
         model.put("useLombok", ctx.getOptions().isUseLombok());
         return model;
+    }
+
+    /** 获取当前运行环境的 Spring Boot 主版本号（如 3.4.5 → 3，4.1.0 → 4）。 */
+    private static int getBootMajorVersion() {
+        try {
+            Class<?> c = Class.forName("org.springframework.boot.SpringBootVersion");
+            String v = (String) c.getMethod("getVersion").invoke(null);
+            if (v != null && !v.isEmpty()) {
+                return Integer.parseInt(v.split("\\.")[0]);
+            }
+        } catch (Exception e) {
+            logger.debug("无法读取 Spring Boot 版本，假设为 3.x", e);
+        }
+        return 3;
     }
 
     /** 写入 .spring-forge.lock 标记文件。 */

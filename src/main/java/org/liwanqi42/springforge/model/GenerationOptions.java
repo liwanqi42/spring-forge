@@ -28,7 +28,7 @@ public class GenerationOptions {
     /** 表前缀（生成实体名时去除） */
     private String tablePrefix = "";
     /** 是否使用 Lombok */
-    private boolean useLombok;
+    private boolean useLombok = true;
     /** 日期格式 */
     private String dateFormat = "yyyy-MM-dd HH:mm:ss";
     /** 使用精简 MyBatis 配置（信任 Spring Boot 自动配置 DataSource/SqlSessionFactory） */

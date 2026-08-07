@@ -56,12 +56,12 @@
     "options": {
       "type": "object",
       "properties": {
-        "generateDdl": { "type": "boolean", "default": false },
+        "generateDdl": { "type": "boolean", "default": "true" },
         "logicDeleteField": { "type": "string", "default": "deleted" },
         "optimisticLockField": { "type": "string", "default": "version" },
         "idType": { "type": "string", "default": "ASSIGN_ID" },
         "tablePrefix": { "type": "string", "default": "" },
-        "useLombok": { "type": "boolean", "default": true }
+        "useLombok": { "type": "boolean", "default": "true" }
       }
     }
   }

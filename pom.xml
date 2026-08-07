@@ -10,7 +10,7 @@
     </parent>
     <groupId>io.github.liwanqi42</groupId>
     <artifactId>spring-forge</artifactId>
-    <version>2.0.2</version>
+    <version>3.1.4</version>
     <name>spring-forge</name>
     <description>全自动代码生成引擎 — 支持 MVC/DDD 双模式，基于 MyBatis-Plus</description>
     <url>https://github.com/liwanqi42/spring-forge</url>
@@ -97,12 +97,12 @@
             <version>1.2.20</version>
             <optional>true</optional>
         </dependency>
-        <!-- Lombok -->
+        <!-- Lombok（compile 作用域，确保下游项目可通过依赖传递获得注解处理器） -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.36</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

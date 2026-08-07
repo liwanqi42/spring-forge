@@ -14,7 +14,7 @@
 <dependency>
     <groupId>io.github.liwanqi42</groupId>
     <artifactId>spring-forge</artifactId>
-    <version>2.0.2</version>
+    <version>3.1.4</version>
 </dependency>
 ```
 
